@@ -1,6 +1,6 @@
 QuickORM is a simple RestServer and Restclient based on mORMot framework
 
-  Copyright (c) 2016-2018 Kike Pérez
+  Copyright (c) 2016-2017 Kike Pérez
 
   This framework uses next libraries:
 
