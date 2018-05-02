@@ -7,7 +7,7 @@
   Author      : Kike Pérez
   Version     : 1.5
   Created     : 20/06/2017
-  Modified    : 17/02/2018
+  Modified    : 25/03/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -37,8 +37,13 @@ interface
 uses
   Classes,
   SysUtils,
+  {$IFDEF NEXTGEN}
+  SynCrossPlatformJSON,
+  SynCrossPlatformRest,
+  {$ELSE}
   mORMot,
   SynCommons,
+  {$ENDIF}
   System.Generics.Collections,
   Quick.Commons,
   Quick.ORM.Engine;

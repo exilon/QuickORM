@@ -3,7 +3,12 @@ unit ORMDemo.Interf;
 interface
 
 uses
+  {$IFDEF NEXTGEN}
+  SynCrossPlatformJSON,
+  SynCrossPlatformRest;
+  {$ELSE}
   mORMot;
+  {$ENDIF}
 
 type
 
@@ -18,6 +23,7 @@ implementation
 
 initialization
 
+{$IFNDEF NEXTGEN}
 TInterfaceFactory.RegisterInterfaces([TypeInfo(IServiceMethods)]);
-
+{$ENDIF}
 end.

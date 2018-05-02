@@ -35,7 +35,11 @@ unit Quick.ORM.App.Config;
 interface
 
 uses
-  System.Classes, System.SysUtils, mORMot, SynCommons, SynCrypto;
+  Classes,
+  SysUtils,
+  mORMot,
+  SynCommons,
+  SynCrypto;
 
 type
 

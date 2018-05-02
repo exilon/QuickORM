@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="4">
+    <PathDelim Value="\"/>
+    <Name Value="quickORM"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)\"/>
+      </SearchPaths>
+    </CompilerOptions>
+    <Version Major="1"/>
+    <Files Count="15">
+      <Item1>
+        <Filename Value="Quick.ORM.App.Config.pas"/>
+        <UnitName Value="Quick.ORM.App.Config"/>
+      </Item1>
+      <Item2>
+        <Filename Value="Quick.ORM.DataBase.pas"/>
+        <UnitName Value="Quick.ORM.DataBase"/>
+      </Item2>
+      <Item3>
+        <Filename Value="Quick.ORM.Engine.pas"/>
+        <UnitName Value="Quick.ORM.Engine"/>
+      </Item3>
+      <Item4>
+        <Filename Value="Quick.ORM.Form.Login.dfm"/>
+        <Type Value="Text"/>
+      </Item4>
+      <Item5>
+        <Filename Value="Quick.ORM.Form.Login.pas"/>
+        <UnitName Value="Quick.ORM.Form.Login"/>
+      </Item5>
+      <Item6>
+        <Filename Value="Quick.ORM.RestClient.Cross.pas"/>
+        <UnitName Value="Quick.ORM.RestClient.Cross"/>
+      </Item6>
+      <Item7>
+        <Filename Value="Quick.ORM.RestClient.pas"/>
+        <UnitName Value="Quick.ORM.RestClient"/>
+      </Item7>
+      <Item8>
+        <Filename Value="Quick.ORM.RestDB.pas"/>
+        <UnitName Value="Quick.ORM.RestDB"/>
+      </Item8>
+      <Item9>
+        <Filename Value="Quick.ORM.RestDBFull.pas"/>
+        <UnitName Value="Quick.ORM.RestDBFull"/>
+      </Item9>
+      <Item10>
+        <Filename Value="Quick.ORM.RestServer.pas"/>
+        <UnitName Value="Quick.ORM.RestServer"/>
+      </Item10>
+      <Item11>
+        <Filename Value="Quick.ORM.Security.GUI.pas"/>
+        <UnitName Value="Quick.ORM.Security.GUI"/>
+      </Item11>
+      <Item12>
+        <Filename Value="Quick.ORM.Security.pas"/>
+        <UnitName Value="Quick.ORM.Security"/>
+      </Item12>
+      <Item13>
+        <Filename Value="Quick.ORM.Server.Base.pas"/>
+        <UnitName Value="Quick.ORM.Server.Base"/>
+      </Item13>
+      <Item14>
+        <Filename Value="Quick.ORM.Server.Config.pas"/>
+        <UnitName Value="Quick.ORM.Server.Config"/>
+      </Item14>
+      <Item15>
+        <Filename Value="Quick.ORM.UTF8Helper.pas"/>
+        <UnitName Value="Quick.UTF8Helper"/>
+      </Item15>
+    </Files>
+    <RequiredPkgs Count="3">
+      <Item1>
+        <PackageName Value="QuickLib"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="mormot"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="FCL"/>
+      </Item3>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>

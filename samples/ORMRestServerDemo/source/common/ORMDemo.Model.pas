@@ -3,8 +3,13 @@ unit ORMDemo.Model;
 interface
 
 uses
+  {$IFDEF NEXTGEN}
+  SynCrossPlatformJSON,
+  SynCrossPlatformRest,
+  {$ELSE}
   mORMot,
   SynCommons,
+  {$ENDIF}
   Quick.ORM.Engine;
 
 type

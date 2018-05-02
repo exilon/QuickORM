@@ -7,7 +7,7 @@
   Author      : Kike Pérez
   Version     : 1.2
   Created     : 02/06/2017
-  Modified    : 08/08/2018
+  Modified    : 25/03/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -39,8 +39,13 @@ interface
 uses
   Classes,
   SysUtils,
+  {$IFDEF ANDROID}
+  SynCrossPlatformJSON,
+  SynCrossPlatformREST,
+  {$ELSE}
   SynCommons,
   mORMot,
+  {$ENDIF}
   Quick.Commons;
 
 const
@@ -55,6 +60,9 @@ const
 
 type
 
+  {$IFNDEF MSWINDOWS}
+  EORMException = class(Exception);
+  {$ENDIF}
   EORMServer = class(EORMException);
 
   TDBType = (dtSQLite, dtMSSQL);
@@ -75,8 +83,11 @@ type
 
   TORMClient = TSQLRestClientURI;
 
+  {$IFNDEF NEXTGEN}
   TSrvProtocol = (spHTTP_Socket, spHTTPsys, spHTTPsys_SSL, spHTTPsys_AES, spHTTP_WebSocket, spWebSocketBidir_JSON, spWebSocketBidir_Binary, spWebSocketBidir_BinaryAES{$IFDEF MSWINDOWS}, spNamedPipe{$ENDIF});
-
+  {$ELSE}
+  TSrvProtocol = (spHTTP_Socket, spHTTP_SSL, spHTTP_AES, spHTTP_WebSocket, spWebSocketBidir_JSON, spWebSocketBidir_Binary, spWebSocketBidir_BinaryAES);
+  {$ENDIF}
   TAuthMode = (amNoAuthentication, amSimple, amDefault, amHttpBasic {$IFDEF MSWINDOWS}, amSSPI {$ENDIF});
 
   TServiceAuthorizationPolicy = (saAllowAll, saDenyAll);
@@ -102,6 +113,7 @@ type
 
   TArrayOfRawUTF8 = array of RawUTF8;
 
+  {$IFNDEF ANDROID}
   TArrayOfRawUTF8Helper = record helper for TArrayOfRawUTF8
   public
     procedure Add(const value : RawUTF8; AllowDuplicates : Boolean = False);
@@ -110,6 +122,7 @@ type
     procedure Clear;
     function Count : Integer;
   end;
+  {$ENDIF}
 
   TDBIndex = record
     SQLRecordClass : TSQLRecordClass;
@@ -169,6 +182,7 @@ begin
   end;
 end;
 
+{$IFNDEF ANDROID}
 { TArrayOfRawUTF8Helper }
 
 procedure TArrayOfRawUTF8Helper.Add(const value: RawUTF8; AllowDuplicates : Boolean = False);
@@ -213,6 +227,7 @@ function TArrayOfRawUTF8Helper.Count : Integer;
 begin
   Result := High(Self) + 1;
 end;
+{$ENDIF}
 
 { TDBIndexArrayHelper }
 

@@ -496,8 +496,6 @@ begin
     if (not Security.Enabled) or (Security.PublicServices) then ServiceFactoryServer.ByPassAuthentication := True;
     //determines if service will return XML if client only accepts XML
     ServiceFactoryServer.ResultAsXMLObjectIfAcceptOnlyXML := fService.ResultAsXMLIfRequired;
-    //check every service authorization before execute
-    ServiceFactoryServer.OnMethodExecute := fHTTPServer.BeforeServiceExecute;
   end;
 
   //protocol initialization
@@ -576,7 +574,12 @@ begin
   Security.SetDefaultSecurity;
 
   //assigns ServiceFactory to Security class
-  if fService.Enabled then Security.ServiceFactoryServer := ServiceFactoryServer;
+  if fService.Enabled then
+  begin
+    Security.ServiceFactoryServer := ServiceFactoryServer;
+    //check every service authorization before execute
+    ServiceFactoryServer.OnMethodExecute := fHTTPServer.BeforeServiceExecute;
+  end;
 
   //apply security settings
   Security.ApplySecurity;

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="11"/>
+    <BuildModes Active="Default"/>
+    <Units Count="10">
+      <Unit0>
+        <Filename Value="ORMRestServer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="3" Y="16"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="D:\Lazarus\LibsFPC\mORMot\SQLite3\mORMotUI.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="112"/>
+        <CursorPos X="21" Y="132"/>
+        <UsageCount Value="10"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="D:\Lazarus\LibsFPC\mORMot\SQLite3\mORMotBigTable.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="9" Y="67"/>
+        <UsageCount Value="10"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="D:\Lazarus\LibsFPC\mORMot\SQLite3\mORMotDB.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="145"/>
+        <CursorPos X="9" Y="165"/>
+        <UsageCount Value="10"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="D:\Lazarus\LibsFPC\mORMot\SQLite3\mORMot.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="20393"/>
+        <CursorPos X="16" Y="20424"/>
+        <UsageCount Value="10"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="D:\Lazarus\LibsFPC\mORMot\SynTaskDialog.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="84"/>
+        <CursorPos X="3" Y="104"/>
+        <UsageCount Value="10"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="D:\Lazarus\LibsFPC\mORMot\SynSelfTests.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="144"/>
+        <CursorPos X="9" Y="164"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="D:\Lazarus\LibsFPC\mORMot\SynFPCMetaFile.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="49" Y="12"/>
+        <UsageCount Value="10"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\..\..\..\Quick.ORM.App.Config.pas"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="22"/>
+        <CursorPos X="3" Y="42"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="D:\Lazarus\LibsFPC\mORMot\SynCrypto.pas"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit9>
+    </Units>
+    <JumpHistory Count="7" HistoryIndex="6">
+      <Position1>
+        <Filename Value="ORMRestServer.pas"/>
+        <Caret Line="11" Column="3"/>
+      </Position1>
+      <Position2>
+        <Filename Value="ORMRestServer.pas"/>
+        <Caret Line="13" Column="26"/>
+      </Position2>
+      <Position3>
+        <Filename Value="..\..\..\..\Quick.ORM.App.Config.pas"/>
+        <Caret Line="42" Column="3" TopLine="18"/>
+      </Position3>
+      <Position4>
+        <Filename Value="ORMRestServer.pas"/>
+        <Caret Line="16" Column="3"/>
+      </Position4>
+      <Position5>
+        <Filename Value="..\..\..\..\Quick.ORM.App.Config.pas"/>
+        <Caret Line="42" Column="12" TopLine="22"/>
+      </Position5>
+      <Position6>
+        <Filename Value="..\..\..\..\Quick.ORM.App.Config.pas"/>
+        <Caret Line="40" Column="26" TopLine="22"/>
+      </Position6>
+      <Position7>
+        <Filename Value="..\..\..\..\Quick.ORM.App.Config.pas"/>
+        <Caret Line="42" Column="3" TopLine="22"/>
+      </Position7>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+  <Debugging>
+    <BreakPoints Count="2">
+      <Item1>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="D:\Lazarus\fpcsrc\packages\fcl-json\src\fpjsonrtti.pp"/>
+        <Line Value="736"/>
+      </Item1>
+      <Item2>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="D:\Lazarus\fpcsrc\packages\fcl-json\src\fpjsonrtti.pp"/>
+        <Line Value="844"/>
+      </Item2>
+    </BreakPoints>
+  </Debugging>
+</CONFIG>

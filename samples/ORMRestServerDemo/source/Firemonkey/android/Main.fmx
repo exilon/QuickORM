@@ -1,0 +1,91 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 593
+  ClientWidth = 449
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 3
+  object meInfo: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Align = Client
+    Size.Width = 449.000000000000000000
+    Size.Height = 495.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 441.000000000000000000
+    Viewport.Height = 487.000000000000000000
+  end
+  object Panel1: TPanel
+    Align = Bottom
+    Position.Y = 544.000000000000000000
+    Size.Width = 449.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object btnRandom: TButton
+      Align = Right
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 181.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 39.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Random'
+    end
+    object btnGetUsers: TButton
+      Align = Right
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 315.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 39.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Get Users'
+      OnClick = btnGetUsersClick
+    end
+  end
+  object Panel2: TPanel
+    Align = MostTop
+    Size.Width = 449.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    object edHost: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 1
+      Text = '192.168.1.107'
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 300.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object btnConnect: TButton
+      Align = Right
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 315.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 39.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Connect'
+      OnClick = btnConnectClick
+    end
+  end
+end
