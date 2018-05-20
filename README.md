@@ -1,8 +1,10 @@
 
 **QuickORM**
---------
 ----------
 QuickORM is a simple RestServer and Restclient based on mORMot framework. Provides a fast implementation of client-server applications in few minutes.
+
+*NEW: Client with basic android compatibility.
+*NEW: Delphinus support
 
 ----------
 This framework uses next libraries:
