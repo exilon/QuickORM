@@ -47,3 +47,9 @@ desktop.ini
 *.compiled
 
 samples/ORMRestServerDemo/bin/Win64/Debug/
+
+samples/ORMRestServerDemo/bin/Android/Debug/
+
+samples/ORMRestServerDemo/source/bin/Android/Debug/
+
+samples/ORMRestServerDemo/source/Firemonkey/android/AndroidManifest\.template\.xml
