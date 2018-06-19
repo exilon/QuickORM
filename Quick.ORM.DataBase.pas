@@ -5,9 +5,9 @@
   Unit        : Quick.ORM.DataBase
   Description : Rest ORM Database config & connection
   Author      : Kike Pérez
-  Version     : 1.1
+  Version     : 1.2
   Created     : 20/06/2017
-  Modified    : 08/02/2018
+  Modified    : 19/06/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -52,7 +52,8 @@ type
       fSQLProperties : TSQLDBConnectionProperties;
       fDBFileName : RawUTF8;
       fDBType : TDBType;
-      fDBIndexes : TArray<TDBIndex>;
+      fDBIndexes : TDBIndexArray;
+      fDBMappingFields : TDBMappingArray;
       fFullMemoryMode : Boolean;
       fModel : TSQLModel;
       faRootURI : RawUTF8;
@@ -64,6 +65,7 @@ type
       property DBType : TDBType read fDBType write fDBType;
       property DBFileName : RawUTF8 read fDBFileName write SetDBFileName;
       property DBIndexes : TDBIndexArray read fDBIndexes write fDBIndexes;
+      property DBMappingFields : TDBMappingArray read fDBMappingFields write fDBMappingFields;
       property Model : TSQLModel read fModel write fModel;
       property FullMemoryMode : Boolean read fFullMemoryMode write fFullMemoryMode;
       property LockMode : TSQLiteLockMode read fLockMode write fLockMode;

@@ -5,9 +5,9 @@
   Unit        : Quick.ORM.RestServer
   Description : Rest ORM Server allows access by http, httpapi or websockets
   Author      : Kike Pérez
-  Version     : 1.7
+  Version     : 1.8
   Created     : 02/06/2017
-  Modified    : 28/01/2018
+  Modified    : 19/06/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -379,6 +379,7 @@ var
   ServiceFactoryServer: TServiceFactoryServer;
   ProxyPort : Integer;
   DBIndex : TDBIndex;
+  DBMapping : TDBMappingField;
 begin
   //load config file
   if ConfigFile.Enabled then
@@ -436,6 +437,16 @@ begin
           TODBCConnectionProperties.Create('','Driver={SQL Server Native Client 10.0} ;Database='+DataBase.SQLConnection.DataBase+';'+
             'Server='+DataBase.SQLConnection.ServerName+';UID='+DataBase.SQLConnection.Username+';Pwd='+DataBase.SQLConnection.UserPass+';MARS_Connection=yes','','');
           VirtualTableExternalRegisterAll(DataBase.Model,DataBase.SQLProperties);
+
+          try
+            for DBMapping in DataBase.DBMappingFields do
+            begin
+              DataBase.Model.Props[DBMapping.SQLRecordClass].ExternalDB.MapField(DBMapping.InternalFieldName,DBMapping.ExternalFieldName);
+            end;
+          except
+            on E : Exception do raise Exception.CreateFmt('Error mapping fields! (%s)',[e.Message]);
+          end;
+
           if fCustomORMServerClass = nil then ORM := TSQLRestServerDB.Create(DataBase.Model,SQLITE_MEMORY_DATABASE_NAME,Security.Enabled,'')
             else ORM := fCustomORMServerClass.Create(DataBase.Model,SQLITE_MEMORY_DATABASE_NAME,Security.Enabled,'')
         end;

@@ -5,9 +5,9 @@
   Unit        : Quick.ORM.Engine
   Description : Rest ORM Engine
   Author      : Kike Pérez
-  Version     : 1.2
+  Version     : 1.4
   Created     : 02/06/2017
-  Modified    : 25/03/2018
+  Modified    : 19/06/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -138,6 +138,19 @@ type
     procedure Add(aSQLRecordClass : TSQLRecordClass; aMultiIndexFieldNames : TArrayOfRawUTF8; aUnique : Boolean = False); overload;
   end;
 
+  TDBMappingField = record
+    SQLRecordClass : TSQLRecordClass;
+    InternalFieldName : string;
+    ExternalFieldName : string;
+  end;
+
+  TDBMappingArray = TArray<TDBMappingField>;
+
+  TDBMappingArrayHelper = record helper for TDBMappingArray
+  public
+    procedure Map(aSQLRecordClass : TSQLRecordClass; const aInternalFieldName, aExternalFieldName : RawUTF8);
+  end;
+
   TSQLRecordClassArray = array of TSQLRecordClass;
 
   TFilterParams = record
@@ -247,6 +260,18 @@ begin
   dbindex.SQLRecordClass := aSQLRecordClass;
   dbindex.FieldNames := aMultiIndexFieldNames;
   Self := Self + [dbindex];
+end;
+
+{ TDBMappingArrayHelper }
+
+procedure TDBMappingArrayHelper.Map(aSQLRecordClass: TSQLRecordClass; const aInternalFieldName, aExternalFieldName: RawUTF8);
+var
+  dbMappingField : TDBMappingField;
+begin
+  dbMappingField.SQLRecordClass := aSQLRecordClass;
+  dbMappingField.InternalFieldName := aInternalFieldName;
+  dbMappingField.ExternalFieldName := aExternalFieldName;
+  Self := Self + [dbMappingField];
 end;
 
 end.
