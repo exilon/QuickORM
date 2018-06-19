@@ -3,6 +3,7 @@
 ----------
 QuickORM is a simple RestServer and Restclient based on mORMot framework. Provides a fast implementation of client-server applications in few minutes.
 
+*NEW: Easy external DB Mapping Fields
 *NEW: Client with basic android compatibility.
 *NEW: Delphinus support
 
@@ -40,6 +41,7 @@ You can provide a binding port in command line to allow reverse proxies like ARR
 	- **LockMode:** Normal or exclusive acces to speedup operations.
 	- **IncludedClasses:** SQLRecord classes used in your database.
 	- **SQLConnection:** Properties to connect to external database (host, user, password,...).
+	- **DBMappingFiels:** Can map your internal class fields with external database fields (example: can map your SQLRecord ID with external IdCustom)
 	
 - **ORMRestServer.HTTPOptions:** HTTP Server configuration.
 	- **Binding:** Defines listen ip and port for http server.
@@ -94,7 +96,10 @@ RestServer.DBIndexes.Add(TMyClass,'FieldName',True);
 	
 //Create a multiindex
 ORMRestServer.DBIndexes.Add(TMyClass,['FieldName1','FieldName2']);
+
 //Define public methods
 RestServer.Security.PublicMethods := ['Method1','Method2'];
 
- 
+//Mapping fields
+RestServer.Database.DBMappingFiels.Map(TMySQLRecord,'ID','IDCustom');
+```
