@@ -5,9 +5,9 @@
   Unit        : Quick.ORM.RestDBFull
   Description : Rest ORM access local/remote db only
   Author      : Kike Pérez
-  Version     : 1.4
+  Version     : 1.5
   Created     : 12/06/2017
-  Modified    : 08/01/2018
+  Modified    : 20/06/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 

@@ -434,8 +434,9 @@ begin
       dtMSSQL :
         begin
           DataBase.SQLProperties := //TOleDBMSSQL2008ConnectionProperties.Create(fDataBase.SQLConnection.ServerName,fDataBase.SQLConnection.DataBase,fDataBase.SQLConnection.Username,fDataBase.SQLConnection.UserPass);
-          TODBCConnectionProperties.Create('','Driver={SQL Server Native Client 10.0} ;Database='+DataBase.SQLConnection.DataBase+';'+
-            'Server='+DataBase.SQLConnection.ServerName+';UID='+DataBase.SQLConnection.Username+';Pwd='+DataBase.SQLConnection.UserPass+';MARS_Connection=yes','','');
+          //TODBCConnectionProperties.Create('','Driver={SQL Server Native Client 10.0} ;Database='+DataBase.SQLConnection.DataBase+';'+
+          //  'Server='+DataBase.SQLConnection.ServerName+';UID='+DataBase.SQLConnection.Username+';Pwd='+DataBase.SQLConnection.UserPass+';MARS_Connection=yes','','');
+          TODBCConnectionProperties.Create('',DataBase.SQLConnection.GetConnectionString,'','');
           VirtualTableExternalRegisterAll(DataBase.Model,DataBase.SQLProperties);
 
           try

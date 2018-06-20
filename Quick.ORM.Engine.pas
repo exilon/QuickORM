@@ -7,7 +7,7 @@
   Author      : Kike Pérez
   Version     : 1.4
   Created     : 02/06/2017
-  Modified    : 19/06/2018
+  Modified    : 20/06/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -58,6 +58,24 @@ const
   LOG_ONLYERRORS: TSynLogInfos = [sllLastError,sllError,sllException,sllExceptionOS,sllDDDError];
   LOG_NONE: TSynLogInfos = [];
 
+  {$IFDEF DELPHIXE7_UP}
+  ProviderName : array of string = ['Microsoft.Jet.OLEDB.4.0',
+                                    'Microsoft.ACE.OLEDB.12.0',
+                                    'SQL Server',
+                                    'SQL Server Native Client 10.0',
+                                    'SQL Server Native Client 11.0',
+                                    'MySQL ODBC 5.2 UNICODE Driver',
+                                    'PostgreSQL Unicode'];
+  {$ELSE}
+  ProviderName : array[0..6] of string = ('Microsoft.Jet.OLEDB.4.0',
+                                          'Microsoft.ACE.OLEDB.12.0',
+                                          'SQL Server',
+                                          'SQL Server Native Client 10.0',
+                                          'SQL Server Native Client 11.0',
+                                          'MySQL ODBC 5.2 UNICODE Driver',
+                                          'PostgreSQL Unicode');
+  {$ENDIF}
+
 type
 
   {$IFNDEF MSWINDOWS}
@@ -69,11 +87,24 @@ type
 
   TSQLiteLockMode = (lmNormal, lmExclusive);
 
+  TDBProvider = (dbMSAccess2000, dbMSAccess2007, dbMSSQL, dbMSSQLnc10, dbMSSQLnc11, dbMySQL, dbPostgreSQL);
+
   TSQLConnection = class
-    ServerName : RawUTF8;
-    DataBase : RawUTF8;
-    Username : RawUTF8;
-    UserPass : RawUTF8;
+  private
+    fProvider : TDBProvider;
+    fServerName : RawUTF8;
+    fServerPort : Integer;
+    fDataBase : RawUTF8;
+    fUsername : RawUTF8;
+    fUserPass : RawUTF8;
+  public
+    constructor Create;
+    property Provider : TDBProvider read fProvider write fProvider;
+    property ServerName : RawUTF8 read fServerName write fServerName;
+    property DataBase : RawUTF8 read fDataBase write fDataBase;
+    property UserName : RawUTF8 read fUsername write fUsername;
+    property UserPass : RawUTF8 read fUserPass write fUserPass;
+    function GetConnectionString: string;
   end;
 
   //TORMServer = class(TSQLRestServer)
@@ -272,6 +303,32 @@ begin
   dbMappingField.InternalFieldName := aInternalFieldName;
   dbMappingField.ExternalFieldName := aExternalFieldName;
   Self := Self + [dbMappingField];
+end;
+
+{ TSQLConnection }
+
+constructor TSQLConnection.Create;
+begin
+  fServerName := 'localhost';
+  fServerPort := 0;
+end;
+
+function TSQLConnection.GetConnectionString: string;
+begin
+  if fServerPort = 0 then
+  case fProvider of
+    dbMSSQL, dbMSSQLnc10, dbMSSQLnc11 : fServerPort := 1433;
+    dbMySQL : fServerPort := 3306;
+    dbPostgreSQL : fServerPort := 5432;
+  end;
+
+  Result := Format('Driver={%s};Persist Security Info=False;UID=%s;Pwd=%s;Database=%s;Server=%s;Port=%d;MARS_Connection=yes',[
+                              ProviderName[Integer(fProvider)],
+                              fUserName,
+                              fUserPass,
+                              fDatabase,
+                              fServerName,
+                              fServerPort]);
 end;
 
 end.

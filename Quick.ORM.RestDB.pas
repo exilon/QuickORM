@@ -5,9 +5,9 @@
   Unit        : Quick.ORM.RestDB
   Description : Rest ORM access SQLite db only
   Author      : Kike Pérez
-  Version     : 1.4
+  Version     : 1.5
   Created     : 02/06/2017
-  Modified    : 26/02/2018
+  Modified    : 20/06/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -111,8 +111,9 @@ begin
         begin  {SQL Server Native Client 10.0} {Microsoft OLE DB Provider for SQL Server}
           //fDataBase.Model := TSQLModel.Create(fDataBase.IncludedClasses);
           fDataBase.SQLProperties := //TOleDBMSSQL2008ConnectionProperties.Create(fDataBase.SQLConnection.ServerName,fDataBase.SQLConnection.DataBase,fDataBase.SQLConnection.Username,fDataBase.SQLConnection.UserPass);
-          TODBCConnectionProperties.Create('','Driver={SQL Server Native Client 10.0} ;Database='+fDataBase.SQLConnection.DataBase+';'+
-            'Server='+fDataBase.SQLConnection.ServerName+';UID='+fDataBase.SQLConnection.Username+';Pwd='+fDataBase.SQLConnection.UserPass+';MARS_Connection=yes','','');
+          //TODBCConnectionProperties.Create('','Driver={SQL Server Native Client 10.0} ;Database='+fDataBase.SQLConnection.DataBase+';'+
+          //  'Server='+fDataBase.SQLConnection.ServerName+';UID='+fDataBase.SQLConnection.Username+';Pwd='+fDataBase.SQLConnection.UserPass+';MARS_Connection=yes','','');
+          TODBCConnectionProperties.Create('',DataBase.SQLConnection.GetConnectionString,'','');
           VirtualTableExternalRegisterAll(fDataBase.Model,fDataBase.SQLProperties);
           //fDataBase.Model.VirtualTableRegister(fDataBase.IncludedClasses[0],TSQLVirtualTableBinary);
           ORM := TSQLRestClientDB.Create(fDataBase.Model,nil,SQLITE_MEMORY_DATABASE_NAME,TSQLRestServerDB,fSecurity.Enabled,'');

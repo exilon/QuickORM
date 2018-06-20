@@ -7,7 +7,7 @@
   Author      : Kike Pérez
   Version     : 1.2
   Created     : 20/06/2017
-  Modified    : 19/06/2018
+  Modified    : 20/06/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -31,6 +31,8 @@
  *************************************************************************** }
 
 unit Quick.ORM.DataBase;
+
+{$i QuickLogger.inc}
 
 interface
 
@@ -89,6 +91,7 @@ begin
   faRootURI := 'root';
   fDBFileName := '.\default.db3';
   fSQLConnection := TSQLConnection.Create;
+  fSQLConnection.Provider := TDBProvider.dbMSSQL;
   fLockMode := TSQLiteLockMode.lmNormal;
 end;
 
