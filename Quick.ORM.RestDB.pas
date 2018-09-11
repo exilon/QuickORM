@@ -39,6 +39,9 @@ interface
 uses
   Classes,
   SysUtils,
+  {$IFDEF NEXTGEN}
+  Not compatible with firemonkey android/ios
+  {$ENDIF}
   SynCommons,
   SynDBODBC,
   mORMot,
