@@ -7,7 +7,7 @@
   Author      : Kike Pérez
   Version     : 1.4
   Created     : 02/06/2017
-  Modified    : 20/06/2018
+  Modified    : 11/08/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -281,6 +281,7 @@ var
 begin
   dbindex.SQLRecordClass := aSQLRecordClass;
   dbindex.FieldNames := [aIndexFieldName];
+  dbindex.Unique := aUnique;
   Self := Self + [dbindex];
 end;
 
@@ -290,6 +291,7 @@ var
 begin
   dbindex.SQLRecordClass := aSQLRecordClass;
   dbindex.FieldNames := aMultiIndexFieldNames;
+  dbindex.Unique := aUnique;
   Self := Self + [dbindex];
 end;
 
