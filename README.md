@@ -3,6 +3,7 @@
 ----------
 QuickORM is a simple RestServer and Restclient based on mORMot framework. Provides a fast implementation of client-server applications in few minutes.
 
+*NEW: Custom external database compatibility (Thanks to @juanter)
 *NEW: Easy external DB Mapping Fields
 *NEW: Client with basic android compatibility.
 *NEW: Delphinus support

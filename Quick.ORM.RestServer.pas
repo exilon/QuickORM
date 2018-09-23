@@ -7,7 +7,7 @@
   Author      : Kike Pérez
   Version     : 1.8
   Created     : 02/06/2017
-  Modified    : 19/06/2018
+  Modified    : 23/09/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -148,7 +148,8 @@ type
     property HTTPOptions : THTTPServerOptions read fHTTPOptions write fHTTPOptions;
     constructor Create(cFullMemoryMode : Boolean = False); override;
     destructor Destroy; override;
-    function Connect : Boolean; override;
+    function Connect : Boolean; overload; override;
+    function Connect(DoCustomDB : TProc) : Boolean; overload;
   end;
 
 implementation
@@ -374,7 +375,12 @@ begin
   fConfigFile.DBFilename := DataBase.DBFileName;
 end;
 
-function TORMRestServer.Connect;
+function TORMRestServer.Connect : Boolean;
+begin
+  Result := Connect(nil);
+end;
+
+function TORMRestServer.Connect(DoCustomDB : TProc) : Boolean;
 var
   ServiceFactoryServer: TServiceFactoryServer;
   ProxyPort : Integer;
@@ -425,33 +431,37 @@ begin
   end
   else
   begin
-    case DataBase.DBType of
-      dtSQLite :
-        begin
-          if fCustomORMServerClass = nil then ORM := TSQLRestServerDB.Create(DataBase.Model,DataBase.DBFileName,Security.Enabled)
-            else ORM := fCustomORMServerClass.Create(DataBase.Model,DataBase.DBFileName,Security.Enabled);
-        end;
-      dtMSSQL :
-        begin
-          DataBase.SQLProperties := //TOleDBMSSQL2008ConnectionProperties.Create(fDataBase.SQLConnection.ServerName,fDataBase.SQLConnection.DataBase,fDataBase.SQLConnection.Username,fDataBase.SQLConnection.UserPass);
-          //TODBCConnectionProperties.Create('','Driver={SQL Server Native Client 10.0} ;Database='+DataBase.SQLConnection.DataBase+';'+
-          //  'Server='+DataBase.SQLConnection.ServerName+';UID='+DataBase.SQLConnection.Username+';Pwd='+DataBase.SQLConnection.UserPass+';MARS_Connection=yes','','');
-          TODBCConnectionProperties.Create('',DataBase.SQLConnection.GetConnectionString,'','');
-          VirtualTableExternalRegisterAll(DataBase.Model,DataBase.SQLProperties);
-
-          try
-            for DBMapping in DataBase.DBMappingFields do
-            begin
-              DataBase.Model.Props[DBMapping.SQLRecordClass].ExternalDB.MapField(DBMapping.InternalFieldName,DBMapping.ExternalFieldName);
-            end;
-          except
-            on E : Exception do raise Exception.CreateFmt('Error mapping fields! (%s)',[e.Message]);
+    if not Assigned(DoCustomDb) then
+    begin
+      case DataBase.DBType of
+        dtSQLite :
+          begin
+            if fCustomORMServerClass = nil then ORM := TSQLRestServerDB.Create(DataBase.Model,DataBase.DBFileName,Security.Enabled)
+              else ORM := fCustomORMServerClass.Create(DataBase.Model,DataBase.DBFileName,Security.Enabled);
           end;
+        dtMSSQL :
+          begin
+            DataBase.SQLProperties := //TOleDBMSSQL2008ConnectionProperties.Create(fDataBase.SQLConnection.ServerName,fDataBase.SQLConnection.DataBase,fDataBase.SQLConnection.Username,fDataBase.SQLConnection.UserPass);
+            //TODBCConnectionProperties.Create('','Driver={SQL Server Native Client 10.0} ;Database='+DataBase.SQLConnection.DataBase+';'+
+            //  'Server='+DataBase.SQLConnection.ServerName+';UID='+DataBase.SQLConnection.Username+';Pwd='+DataBase.SQLConnection.UserPass+';MARS_Connection=yes','','');
+            TODBCConnectionProperties.Create('',DataBase.SQLConnection.GetConnectionString,'','');
+            VirtualTableExternalRegisterAll(DataBase.Model,DataBase.SQLProperties);
 
-          if fCustomORMServerClass = nil then ORM := TSQLRestServerDB.Create(DataBase.Model,SQLITE_MEMORY_DATABASE_NAME,Security.Enabled,'')
-            else ORM := fCustomORMServerClass.Create(DataBase.Model,SQLITE_MEMORY_DATABASE_NAME,Security.Enabled,'')
-        end;
-    end;
+            try
+              for DBMapping in DataBase.DBMappingFields do
+              begin
+                DataBase.Model.Props[DBMapping.SQLRecordClass].ExternalDB.MapField(DBMapping.InternalFieldName,DBMapping.ExternalFieldName);
+              end;
+            except
+              on E : Exception do raise Exception.CreateFmt('Error mapping fields! (%s)',[e.Message]);
+            end;
+
+            if fCustomORMServerClass = nil then ORM := TSQLRestServerDB.Create(DataBase.Model,SQLITE_MEMORY_DATABASE_NAME,Security.Enabled,'')
+              else ORM := fCustomORMServerClass.Create(DataBase.Model,SQLITE_MEMORY_DATABASE_NAME,Security.Enabled,'')
+          end;
+      end;
+    end
+    else DoCustomDb;
   end;
   //create tables
   ORM.CreateMissingTables;

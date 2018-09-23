@@ -7,7 +7,7 @@
   Author      : Kike Pérez
   Version     : 1.5
   Created     : 12/06/2017
-  Modified    : 20/06/2018
+  Modified    : 23/09/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -62,7 +62,8 @@ type
     ORM : TSQLRestServer;
     constructor Create(cFullMemoryMode : Boolean = False); override;
     destructor Destroy; override;
-    function Connect : Boolean; override;
+    function Connect : Boolean; overload; override;
+    function Connect(DoCustomDB : TProc) : Boolean; overload;
   end;
 
 
@@ -86,6 +87,11 @@ begin
 end;
 
 function TORMRestDBFull.Connect : Boolean;
+begin
+  Result := Connect(nil);
+end;
+
+function TORMRestDBFull.Connect(DoCustomDB : TProc) : Boolean;
 var
   DBIndex : TDBIndex;
 begin
@@ -102,6 +108,8 @@ begin
   end
   else
   begin
+    if not Assigned(DoCustomDb) then
+    begin
     case DataBase.DBType of
       dtSQLite : ORM := TSQLRestServerDB.Create(DataBase.Model,DataBase.DBFileName,Security.Enabled);
       dtMSSQL :
@@ -114,6 +122,8 @@ begin
           ORM := TSQLRestServerDB.Create(DataBase.Model,SQLITE_MEMORY_DATABASE_NAME,Security.Enabled,'');
         end;
     end;
+    end
+    else DoCustomDB;
   end;
   //create tables
   ORM.CreateMissingTables;
