@@ -7,7 +7,7 @@
   Author      : Kike Pérez
   Version     : 1.5
   Created     : 02/06/2017
-  Modified    : 20/06/2018
+  Modified    : 23/09/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -71,7 +71,8 @@ type
     property Security : TORMSecurity read fSecurity write fSecurity;
     constructor Create;
     destructor Destroy; override;
-    function Connect : Boolean;
+    function Connect : Boolean; overload; override;
+    function Connect(DoCustomDB : TProc) : Boolean; overload;
   end;
 
 
@@ -95,6 +96,11 @@ begin
 end;
 
 function TORMRestDB.Connect : Boolean;
+begin
+  Result := Connect(nil);
+end;
+
+function TORMRestDB.Connect(DoCustomDB : TProc) : Boolean;
 var
   DBIndex : TDBIndex;
 begin
@@ -108,6 +114,8 @@ begin
   end
   else
   begin
+    if not Assigned(DoCustomDb) then
+    begin
     case fDataBase.DBType of
       dtSQLite : ORM := TSQLRestClientDB.Create(fDataBase.Model, nil, fDataBase.DBFileName, TSQLRestServerDB);
       dtMSSQL :
@@ -122,6 +130,8 @@ begin
           ORM := TSQLRestClientDB.Create(fDataBase.Model,nil,SQLITE_MEMORY_DATABASE_NAME,TSQLRestServerDB,fSecurity.Enabled,'');
         end;
     end;
+    end
+    else DoCustomDB;
   end;
   //exclusive mode speeds up sqlite performance, but db can't be accessible from outside processes
   if fDataBase.LockMode = TSQLiteLockMode.lmExclusive then ORM.Server.DB.LockingMode := TSQLLockingMode.lmExclusive

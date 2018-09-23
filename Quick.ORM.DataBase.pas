@@ -7,7 +7,7 @@
   Author      : Kike Pérez
   Version     : 1.2
   Created     : 20/06/2017
-  Modified    : 20/06/2018
+  Modified    : 23/09/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -105,7 +105,7 @@ end;
 procedure TORMDataBase.SetDBFileName(const dbfname : RawUTF8);
 begin
   //if dbfile not found, sets as current app dir
-  if TFile.Exists(dbfname) then fDBFileName := dbfname
+  if (CompareText(dbfname,'SQLITE_MEMORY_DATABASE_NAME') = 0) or TFile.Exists(dbfname) then fDBFileName := dbfname
     else fDBFileName := Format('%s\%s',[path.EXEPATH,TPath.GetFileName(dbfname)]);
 end;
 
