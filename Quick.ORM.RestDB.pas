@@ -7,7 +7,7 @@
   Author      : Kike Pérez
   Version     : 1.5
   Created     : 02/06/2017
-  Modified    : 23/09/2018
+  Modified    : 03/10/2018
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -71,7 +71,7 @@ type
     property Security : TORMSecurity read fSecurity write fSecurity;
     constructor Create;
     destructor Destroy; override;
-    function Connect : Boolean; overload; override;
+    function Connect : Boolean; overload;
     function Connect(DoCustomDB : TProc) : Boolean; overload;
   end;
 

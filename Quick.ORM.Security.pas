@@ -397,7 +397,7 @@ function TORMAuthGroup.FillOne;
 begin
   fCopySecurityGroup := '';
   ClearLists;
-  Result := inherited;
+  Result := inherited FillOne(Self);
 end;
 
 procedure TORMAuthGroup.ClearLists;
