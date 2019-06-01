@@ -61,3 +61,5 @@ samples/ORMRestServerDemo/source/Firemonkey/android/AndroidManifest\.template\.x
 *.db3
 
 *.db3-journal
+
+samples/ORMRestServerDemo/source/fpc/backup/
