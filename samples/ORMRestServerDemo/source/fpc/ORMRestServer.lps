@@ -4,12 +4,14 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="10">
+    <Units Count="17">
       <Unit0>
         <Filename Value="ORMRestServer.pas"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="3" Y="16"/>
-        <UsageCount Value="22"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="22"/>
+        <CursorPos X="49" Y="45"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -17,96 +19,132 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="112"/>
         <CursorPos X="21" Y="132"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit1>
       <Unit2>
         <Filename Value="D:\Lazarus\LibsFPC\mORMot\SQLite3\mORMotBigTable.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="9" Y="67"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit2>
       <Unit3>
         <Filename Value="D:\Lazarus\LibsFPC\mORMot\SQLite3\mORMotDB.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="145"/>
         <CursorPos X="9" Y="165"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit3>
       <Unit4>
         <Filename Value="D:\Lazarus\LibsFPC\mORMot\SQLite3\mORMot.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="20393"/>
         <CursorPos X="16" Y="20424"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit4>
       <Unit5>
         <Filename Value="D:\Lazarus\LibsFPC\mORMot\SynTaskDialog.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="84"/>
         <CursorPos X="3" Y="104"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit5>
       <Unit6>
         <Filename Value="D:\Lazarus\LibsFPC\mORMot\SynSelfTests.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="144"/>
         <CursorPos X="9" Y="164"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit6>
       <Unit7>
         <Filename Value="D:\Lazarus\LibsFPC\mORMot\SynFPCMetaFile.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="49" Y="12"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit7>
       <Unit8>
         <Filename Value="..\..\..\..\Quick.ORM.App.Config.pas"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="21"/>
         <CursorPos X="3" Y="41"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="14"/>
       </Unit8>
       <Unit9>
         <Filename Value="D:\Lazarus\LibsFPC\mORMot\SynCrypto.pas"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="14"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\..\..\..\..\QuickLib\quicklib.pas"/>
+        <UnitName Value="QuickLib"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="30" Y="13"/>
+        <UsageCount Value="14"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\..\..\..\Quick.ORM.Engine.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="140"/>
+        <CursorPos X="3" Y="159"/>
+        <UsageCount Value="14"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="..\..\..\..\Quick.ORM.RestServer.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="407"/>
+        <CursorPos X="75" Y="416"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="..\..\..\..\..\..\mORMot\SQLite3\mORMot.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="61393"/>
+        <CursorPos X="19" Y="61412"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="..\..\..\..\QuickORM.inc"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="18" Y="25"/>
+        <UsageCount Value="10"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="..\common\ORMDemo.Model.pas"/>
+        <TopLine Value="6"/>
+        <CursorPos X="69" Y="24"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
-      </Unit9>
+      </Unit15>
+      <Unit16>
+        <Filename Value="..\..\..\..\..\..\mORMot\SynSQLite3.pas"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="5380"/>
+        <CursorPos X="66" Y="5403"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit16>
     </Units>
-    <JumpHistory Count="8" HistoryIndex="7">
+    <JumpHistory Count="5" HistoryIndex="4">
       <Position1>
-        <Filename Value="ORMRestServer.pas"/>
-        <Caret Line="11" Column="3"/>
+        <Filename Value="..\common\ORMDemo.Model.pas"/>
+        <Caret Line="31" Column="24" TopLine="4"/>
       </Position1>
       <Position2>
-        <Filename Value="ORMRestServer.pas"/>
-        <Caret Line="13" Column="26"/>
+        <Filename Value="..\common\ORMDemo.Model.pas"/>
+        <Caret Line="24" Column="69" TopLine="6"/>
       </Position2>
       <Position3>
-        <Filename Value="..\..\..\..\Quick.ORM.App.Config.pas"/>
-        <Caret Line="42" Column="3" TopLine="18"/>
+        <Filename Value="ORMRestServer.pas"/>
+        <Caret Line="56" Column="81" TopLine="35"/>
       </Position3>
       <Position4>
         <Filename Value="ORMRestServer.pas"/>
-        <Caret Line="16" Column="3"/>
+        <Caret Line="17" Column="37"/>
       </Position4>
       <Position5>
-        <Filename Value="..\..\..\..\Quick.ORM.App.Config.pas"/>
-        <Caret Line="42" Column="12" TopLine="22"/>
+        <Filename Value="ORMRestServer.pas"/>
+        <Caret Line="45" Column="49" TopLine="22"/>
       </Position5>
-      <Position6>
-        <Filename Value="..\..\..\..\Quick.ORM.App.Config.pas"/>
-        <Caret Line="40" Column="26" TopLine="22"/>
-      </Position6>
-      <Position7>
-        <Filename Value="..\..\..\..\Quick.ORM.App.Config.pas"/>
-        <Caret Line="42" Column="3" TopLine="22"/>
-      </Position7>
-      <Position8>
-        <Filename Value="D:\Lazarus\LibsFPC\mORMot\SynCrypto.pas"/>
-      </Position8>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

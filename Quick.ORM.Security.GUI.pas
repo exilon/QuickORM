@@ -1,13 +1,13 @@
 { ***************************************************************************
 
-  Copyright (c) 2016-2018 Kike Pérez
+  Copyright (c) 2016-2019 Kike Pérez
 
   Unit        : Quick.ORM.Security.GUI
   Description : Rest ORM Security GUI User/Services
   Author      : Kike Pérez
-  Version     : 1.2
+  Version     : 1.4
   Created     : 23/07/2017
-  Modified    : 24/07/2017
+  Modified    : 08/05/2019
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -31,6 +31,8 @@
  *************************************************************************** }
 
 unit Quick.ORM.Security.GUI;
+
+{$i QuickORM.inc}
 
 interface
 

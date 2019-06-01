@@ -1,13 +1,13 @@
 { ***************************************************************************
 
-  Copyright (c) 2016-2018 Kike Pérez
+  Copyright (c) 2016-2019 Kike Pérez
 
   Unit        : Quick.ORM.RestClient
   Description : Rest ORM Client access by http, httpapi or websockets
   Author      : Kike Pérez
-  Version     : 1.4
+  Version     : 1.6
   Created     : 02/06/2017
-  Modified    : 07/09/2017
+  Modified    : 01/06/2019
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -31,9 +31,10 @@
  *************************************************************************** }
 unit Quick.ORM.RestClient;
 
-interface
-
+{$i QuickORM.inc}
 {$INCLUDE synopse.inc}
+
+interface
 
 uses
   Classes,
@@ -70,10 +71,14 @@ type
     fConnectTimeout : Integer;
     fWSEncryptionKey : RawUTF8;
     fNamedPipe : RawUTF8;
+    fProxyName : RawUTF8;
+    fProxyPass : RawUTF8;
   public
     property AuthMode : TAuthMode read fAuthMode write fAuthMode;
     property Protocol : TSrvProtocol read fProtocol write fProtocol;
     property ConnectionTimeout : Integer read fConnectionTimeout write fConnectionTimeout;
+    property ProxyName : RawUTF8 read fProxyName write fProxyName;
+    property ProxyPass : RawUTF8 read fProxyPass write fProxyPass;
     property SendTimeout : Integer read fSendTimeout write fSendTimeout;
     property ReceiveTimeout : Integer read fReceiveTimeout write fReceiveTimeout;
     property ConnectTimeout : Integer read fConnectTimeout write fConnectTimeout;
@@ -181,6 +186,8 @@ begin
   fConnectTimeout := HTTP_DEFAULT_CONNECTTIMEOUT;
   fWSEncryptionKey := DEF_ENCRYPTIONKEY;
   fNamedPipe := DEF_NAMEDPIPE;
+  fProxyName := '';
+  fProxyPass := '';
 end;
 
 
@@ -245,49 +252,49 @@ begin
     case fHTTPOptions.Protocol of
       spHTTP_Socket:
         begin
-          ORM := TSQLHttpClientWinSock.Create(fHost, IntToStr(fPort), fDataBase.Model, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout, fHTTPOptions.ConnectTimeout);
+          ORM := TSQLHttpClientWinSock.Create(fHost, IntToStr(fPort), fDataBase.Model, False, fHTTPOptions.ProxyName, fHTTPOptions.ProxyPass, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout, fHTTPOptions.ConnectTimeout);
           TSQLHttpClientWinSock(ORM).KeepAliveMS := fHTTPOptions.ConnectionTimeout;
         end;
       spHTTPsys:
         begin
-          ORM := TSQLHttpClientWinHTTP.Create(fHost,IntToStr(fPort), fDataBase.Model, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout,fHTTPOptions.ConnectTimeout);
+          ORM := TSQLHttpClientWinHTTP.Create(fHost,IntToStr(fPort), fDataBase.Model, False, fHTTPOptions.ProxyName, fHTTPOptions.ProxyPass, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout,fHTTPOptions.ConnectTimeout);
           TSQLHttpClientWinHTTP(ORM).KeepAliveMS := fHTTPOptions.ConnectionTimeout;
           TSQLHttpClientWinHTTP(ORM).Compression := [hcSynShaAes];
         end;
      {$ifdef MSWINDOWS}
       spHTTPsys_SSL:
         begin
-          ORM := TSQLHttpClientWinHTTP.Create(fHost,IntToStr(fPort), fDataBase.Model, True, '', '', fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout, fHTTPOptions.ConnectTimeout);
+          ORM := TSQLHttpClientWinHTTP.Create(fHost,IntToStr(fPort), fDataBase.Model, True, fHTTPOptions.ProxyName, fHTTPOptions.ProxyPass, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout, fHTTPOptions.ConnectTimeout);
           TSQLHttpClientWinHTTP(ORM).KeepAliveMS := fHTTPOptions.ConnectionTimeout;
           TSQLHttpClientWinHTTP(ORM).Compression := [hcSynShaAes];
         end;
      {$endif}
       spHTTPsys_AES:
         begin
-          ORM := TSQLHttpClientWinHTTP.Create(fHost,IntToStr(fPort), fDataBase.Model, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout, fHTTPOptions.ConnectTimeout);
+          ORM := TSQLHttpClientWinHTTP.Create(fHost,IntToStr(fPort), fDataBase.Model, True, fHTTPOptions.ProxyName, fHTTPOptions.ProxyPass, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout, fHTTPOptions.ConnectTimeout);
           TSQLHttpClientWinHTTP(ORM).KeepAliveMS := fHTTPOptions.ConnectionTimeout;
           TSQLHttpClientWinHTTP(ORM).Compression := [hcSynShaAes];
         end;
       spHTTP_WebSocket:
         begin
-          ORM := TSQLHttpClientWebsockets.Create(fHost,IntToStr(fPort), fDataBase.Model, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout, fHTTPOptions.ConnectTimeout);
+          ORM := TSQLHttpClientWebsockets.Create(fHost,IntToStr(fPort), fDataBase.Model, False, fHTTPOptions.ProxyName, fHTTPOptions.ProxyPass, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout, fHTTPOptions.ConnectTimeout);
           TSQLHttpClientWebsockets(ORM).KeepAliveMS := fHTTPOptions.ConnectionTimeout;
         end;
       spWebSocketBidir_JSON:
         begin
-          ORM := TSQLHttpClientWebsockets.Create(fHost,IntToStr(fPort), fDataBase.Model, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout, fHTTPOptions.ConnectTimeout);
+          ORM := TSQLHttpClientWebsockets.Create(fHost,IntToStr(fPort), fDataBase.Model, False, fHTTPOptions.ProxyName, fHTTPOptions.ProxyPass, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout, fHTTPOptions.ConnectTimeout);
           TSQLHttpClientWebsockets(ORM).KeepAliveMS := fHTTPOptions.ConnectionTimeout;
           (ORM as TSQLHttpClientWebsockets).WebSocketsUpgrade('', True);
         end;
       spWebSocketBidir_Binary:
         begin
-          ORM := TSQLHttpClientWebsockets.Create(fHost,IntToStr(fPort), fDataBase.Model, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout, fHTTPOptions.ConnectTimeout);
+          ORM := TSQLHttpClientWebsockets.Create(fHost,IntToStr(fPort), fDataBase.Model, False, fHTTPOptions.ProxyName, fHTTPOptions.ProxyPass, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout, fHTTPOptions.ConnectTimeout);
           TSQLHttpClientWebsockets(ORM).KeepAliveMS := fHTTPOptions.ConnectionTimeout;
           (ORM as TSQLHttpClientWebsockets).WebSocketsUpgrade('', False);
         end;
       spWebSocketBidir_BinaryAES:
         begin
-          ORM := TSQLHttpClientWebsockets.Create(fHost,IntToStr(fPort), fDataBase.Model, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout, fHTTPOptions.ConnectTimeout);
+          ORM := TSQLHttpClientWebsockets.Create(fHost,IntToStr(fPort), fDataBase.Model, False, fHTTPOptions.ProxyName, fHTTPOptions.ProxyPass, fHTTPOptions.SendTimeout, fHTTPOptions.ReceiveTimeout, fHTTPOptions.ConnectTimeout);
           TSQLHttpClientWebsockets(ORM).KeepAliveMS := fHTTPOptions.ConnectionTimeout;
           (ORM as TSQLHttpClientWebsockets).WebSocketsUpgrade(fHTTPOptions.WSEncryptionKey, False);
         end;

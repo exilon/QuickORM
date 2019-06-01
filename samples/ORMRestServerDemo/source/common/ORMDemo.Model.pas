@@ -13,11 +13,18 @@ uses
   Quick.ORM.Engine;
 
 type
-  TLogin = record
-    Username : RawUTF8;
-    UserPass : RawUTF8;
-    LastLogin : TDateTime;
+  TLogin = class
+  private
+    fUsername : RawUTF8;
+    fUserPass : RawUTF8;
+    fLastLogin : TDateTime;
+  published
+    property Username : RawUTF8 read fUsername write fUsername;
+    property UserPass : RawUTF8 read fUserPass write fUserPass;
+    property LastLogin : TDateTime read fLastLogin write fLastLogin;
   end;
+
+  { TAUser }
 
   TAUser = class(TSQLRecordTimeStamped)
   private
@@ -25,6 +32,8 @@ type
     fSurname : RawUTF8;
     fAge : Integer;
     fLogin : TLogin;
+  public
+    constructor Create;
   published
     property Name : RawUTF8 read fName write fName;
     property Surname : RawUTF8 read fSurname write fSurname;
@@ -42,5 +51,12 @@ type
   end;
 
 implementation
+
+{ TAUser }
+
+constructor TAUser.Create;
+begin
+  fLogin := TLogin.Create;
+end;
 
 end.

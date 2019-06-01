@@ -53,3 +53,13 @@ samples/ORMRestServerDemo/bin/Android/Debug/
 samples/ORMRestServerDemo/source/bin/Android/Debug/
 
 samples/ORMRestServerDemo/source/Firemonkey/android/AndroidManifest\.template\.xml
+
+*.ppu
+
+*.rsj
+
+*.db3
+
+*.db3-journal
+
+samples/ORMRestServerDemo/source/fpc/backup/

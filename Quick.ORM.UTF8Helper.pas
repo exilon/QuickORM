@@ -1,13 +1,13 @@
 { ***************************************************************************
 
-  Copyright (c) 2016-2018 Kike Pérez
+  Copyright (c) 2016-2019 Kike Pérez
 
   Unit        : Quick.ORM.UTF8Helper
   Description : Helper functions for SynCommons RawUT8 type
   Author      : Kike Pérez
-  Version     : 1.1
+  Version     : 1.2
   Created     : 18/07/2017
-  Modified    : 21/07/2017
+  Modified    : 08/05/2019
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -32,6 +32,7 @@
 
 unit Quick.UTF8Helper;
 
+{$i QuickORM.inc}
 {$I Synopse.inc}
 
 interface
