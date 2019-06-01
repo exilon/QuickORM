@@ -24,17 +24,6 @@
       <FormatVersion Value="2"/>
       <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages Count="3">
-      <Item1>
-        <PackageName Value="quickORM"/>
-      </Item1>
-      <Item2>
-        <PackageName Value="mormot"/>
-      </Item2>
-      <Item3>
-        <PackageName Value="QuickLib"/>
-      </Item3>
-    </RequiredPackages>
     <Units Count="1">
       <Unit0>
         <Filename Value="ORMRestServer.pas"/>
@@ -46,11 +35,13 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="ORMRestServer"/>
+      <Filename Value="..\..\bin\lib\$(TargetCPU)-$(TargetOS)\ORMRestServer"/>
     </Target>
     <SearchPaths>
-      <IncludeFiles Value="$(ProjOutDir);D:\Lazarus\LibsFPC\mORMot\;D:\Lazarus\LibsFPC\mORMot\SQLite3\"/>
-      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+      <IncludeFiles Value="$(ProjOutDir);..\..\..\..\..\..\mORMot;..\..\..\..\..\..\mORMot\SQLite3"/>
+      <Libraries Value="D:\Delphi\LibsRAD10\mORMot\static\i386-win32\"/>
+      <OtherUnitFiles Value="..\..\..\..\..\QuickLib;..\..\..\..\..\QuickORM;..\..\..\..\..\..\mORMot;..\..\..\..\..\..\mORMot\SQLite3;..\common"/>
+      <UnitOutputDirectory Value="..\..\bin\lib\$(TargetCPU)-$(TargetOS)\ppu"/>
     </SearchPaths>
   </CompilerOptions>
   <Debugging>

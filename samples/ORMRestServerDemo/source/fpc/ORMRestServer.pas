@@ -1,14 +1,12 @@
 program ORMRestServer;
 
-{$APPTYPE CONSOLE}
+{$mode delphi}
 
 {$INCLUDE synopse.inc}
-{$R *.res}
 
 uses
   SysUtils,
   DateUtils,
-  mORMot,
   SynCommons,
   Quick.Commons,
   Quick.Log,
@@ -20,6 +18,7 @@ uses
   ORMDemo.Model,
   ORMDemo.RestMethods,
   ORMDemo.Interf,
+  mORMot,
   ORMDemo.CustomServer;
 
 //contains interface for rest service
@@ -54,7 +53,7 @@ begin
     RestServer.HTTPOptions.IPRestriction.ExcludedIPFromDefaultRule.Add('127.0.0.1');
     RestServer.Service.MethodClass := TServiceMethods;
     RestServer.Service.MethodInterface := IServiceMethods;
-    RestServer.Service.InstanceImplementation := sicShared;
+    RestServer.Service.InstanceImplementation := TServiceInstanceImplementation.sicShared;
     RestServer.Service.Enabled := True;
     RestServer.Security.DefaultAdminPassword := 'exilon';
     RestServer.Security.ServiceAuthorizationPolicy := TServiceAuthorizationPolicy.saDenyAll;
