@@ -1,13 +1,13 @@
 { ***************************************************************************
 
-  Copyright (c) 2016-2018 Kike Pérez
+  Copyright (c) 2016-2019 Kike Pérez
 
   Unit        : Quick.ORM.RestServer.Config
   Description : Rest ORM Server allows access by http, httpapi or websockets
   Author      : Kike Pérez
   Version     : 1.5
   Created     : 09/06/2017
-  Modified    : 22/11/2017
+  Modified    : 08/05/2019
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -32,12 +32,18 @@
 
 unit Quick.ORM.Server.Config;
 
+{$i QuickORM.inc}
+
 interface
 
 uses
   Classes,
-  System.SysUtils,
+  SysUtils,
+  {$IFNDEF FPC}
   System.IOUtils,
+  {$ELSE}
+  Quick.Files,
+  {$ENDIF}
   SynCommons,
   mORMot,
   Quick.ORM.Engine,
@@ -138,8 +144,6 @@ begin
 end;
 
 function TORMCustomConfig.Load : Boolean;
-var
-  done : Boolean;
 begin
   fFileMonitor.Enabled := False;
   try

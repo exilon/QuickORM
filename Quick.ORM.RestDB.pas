@@ -1,13 +1,13 @@
 { ***************************************************************************
 
-  Copyright (c) 2016-2018 Kike Pérez
+  Copyright (c) 2016-2019 Kike PÃ©rez
 
   Unit        : Quick.ORM.RestDB
   Description : Rest ORM access SQLite db only
-  Author      : Kike Pérez
-  Version     : 1.5
+  Author      : Kike PÃ©rez
+  Version     : 1.6
   Created     : 02/06/2017
-  Modified    : 03/10/2018
+  Modified    : 08/05/2019
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -32,9 +32,10 @@
 
 unit Quick.ORM.RestDB;
 
-interface
-
+{$i QuickORM.inc}
 {$INCLUDE synopse.inc}
+
+interface
 
 uses
   Classes,

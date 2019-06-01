@@ -1,13 +1,13 @@
 { ***************************************************************************
 
-  Copyright (c) 2016-2018 Kike Pérez
+  Copyright (c) 2016-2019 Kike Pérez
 
   Unit        : Quick.ORM.Security
   Description : Rest ORM Security User/Services
   Author      : Kike Pérez
-  Version     : 1.5
+  Version     : 1.6
   Created     : 20/06/2017
-  Modified    : 25/03/2018
+  Modified    : 08/05/2019
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -32,6 +32,8 @@
 
 unit Quick.ORM.Security;
 
+{$i QuickORM.inc}
+
 interface
 
 uses
@@ -44,7 +46,7 @@ uses
   mORMot,
   SynCommons,
   {$ENDIF}
-  System.Generics.Collections,
+  Generics.Collections,
   Quick.Commons,
   Quick.ORM.Engine;
 
@@ -70,11 +72,11 @@ type
     fPermission : TSecurityPermission;
     fNeedsAuth : Boolean;
   published
-    constructor Create(const cServiceName : string);
     property ServiceName : RawUTF8 read fServiceName write fServiceName;
     property Permission : TSecurityPermission read fPermission write fPermission;
     property NeedsAuth : Boolean read fNeedsAuth write fNeedsAuth;
   public
+    constructor Create(const cServiceName : string);
     procedure Allow;
     procedure Deny;
   end;
@@ -397,7 +399,7 @@ function TORMAuthGroup.FillOne;
 begin
   fCopySecurityGroup := '';
   ClearLists;
-  Result := inherited FillOne(Self);
+  Result := inherited FillOne;
 end;
 
 procedure TORMAuthGroup.ClearLists;

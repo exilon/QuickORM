@@ -1,13 +1,13 @@
 { ***************************************************************************
 
-  Copyright (c) 2016-2018 Kike Pérez
+  Copyright (c) 2016-2019 Kike Pérez
 
   Unit        : Quick.ORM.Server.Base
   Description : ORM Server Base
   Author      : Kike Pérez
-  Version     : 1.4
+  Version     : 1.5
   Created     : 02/06/2017
-  Modified    : 17/09/2017
+  Modified    : 08/05/2019
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -32,12 +32,18 @@
 
 unit Quick.ORM.Server.Base;
 
+{$i QuickORM.inc}
+
 interface
 
 uses
   Classes,
   SysUtils,
+  {$IFNDEF FPC}
   System.IOUtils,
+  {$ELSE}
+  Quick.Files,
+  {$ENDIF}
   SynCommons,
   mORMot,
   mORMotSQLite3,

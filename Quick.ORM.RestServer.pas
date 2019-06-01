@@ -1,13 +1,13 @@
 { ***************************************************************************
 
-  Copyright (c) 2016-2018 Kike Pérez
+  Copyright (c) 2016-2019 Kike Pérez
 
   Unit        : Quick.ORM.RestServer
   Description : Rest ORM Server allows access by http, httpapi or websockets
   Author      : Kike Pérez
-  Version     : 1.8
+  Version     : 1.9
   Created     : 02/06/2017
-  Modified    : 23/09/2018
+  Modified    : 08/05/2019
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -32,9 +32,10 @@
 
 unit Quick.ORM.RestServer;
 
-interface
-
+{$i QuickORM.inc}
 {$INCLUDE synopse.inc}
+
+interface
 
 uses
   Classes,
@@ -130,6 +131,10 @@ type
     property Enabled : Boolean read fEnabled write fEnabled;
     constructor Create;
   end;
+
+  {$IFDEF FPC}
+  TProc = procedure;
+  {$ENDIF}
 
   TORMRestServer = class(TORMBaseServer)
   private

@@ -1,13 +1,13 @@
 { ***************************************************************************
 
-  Copyright (c) 2016-2018 Kike Pérez
+  Copyright (c) 2016-2019 Kike Pï¿½rez
 
   Unit        : Quick.ORM.DataBase
   Description : Rest ORM Database config & connection
-  Author      : Kike Pérez
+  Author      : Kike Pï¿½rez
   Version     : 1.2
   Created     : 20/06/2017
-  Modified    : 23/09/2018
+  Modified    : 27/02/2019
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -32,7 +32,7 @@
 
 unit Quick.ORM.DataBase;
 
-{$i QuickLogger.inc}
+{$i QuickORM.inc}
 
 interface
 
@@ -43,7 +43,11 @@ uses
   mORMot,
   mORMotDB,
   SynDB,
+  {$IFNDEF FPC}
   System.IOUtils,
+  {$ELSE}
+  Quick.Files,
+  {$ENDIF}
   Quick.Commons,
   Quick.ORM.Engine;
 

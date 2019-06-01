@@ -1,13 +1,13 @@
 { ***************************************************************************
 
-  Copyright (c) 2016-2018 Kike Pérez
+  Copyright (c) 2016-2019 Kike Pérez
 
   Unit        : Quick.ORM.App.Config
   Description : Load/Save config from/to JSON file
   Author      : Kike Pérez
-  Version     : 1.1
+  Version     : 1.2
   Created     : 26/01/2017
-  Modified    : 29/09/2017
+  Modified    : 08/05/2019
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -31,6 +31,8 @@
  *************************************************************************** }
 
 unit Quick.ORM.App.Config;
+
+{$i QuickORM.inc}
 
 interface
 
