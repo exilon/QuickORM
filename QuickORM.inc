@@ -1,7 +1,7 @@
 {
-    This file is part of QuickLogger: https://github.com/exilon/QuickLogger
+    This file is part of QuickORM: https://github.com/exilon/QuickORM
 
-    QuickLogger. Copyright (C) 2018 Kike Pérez
+    QuickLibs. Copyright (C) 2019 Kike Pérez
       Exilon - https://www.exilon.es
 
      ***************************************************************************
@@ -26,6 +26,10 @@
 
   {$INLINE ON}
   {$define HASINLINE}
+
+  {$ifdef LINUX}
+    {$define FPCLINUX}
+  {$endif}
 
   {$ifdef ANDROID}
     {$define LINUX}
@@ -111,11 +115,18 @@
     {$ifend}
     {$if CompilerVersion >= 31.0} //Delphi RX10.1 Berlin
       {$define DELPHIRX101_UP}
-	  {$define DELPHIBERLIN_UP}
+	    {$define DELPHIBERLIN_UP}
     {$ifend}
     {$if CompilerVersion >= 32.0} //Delphi RX10.2 Tokyo
       {$define DELPHIRX102_UP}
-	  {$define DELPHITOKYO_UP}
+	    {$define DELPHITOKYO_UP}
+      {$ifdef LINUX}
+        {$define DELPHILINUX}
+      {$ifend}
+    {$ifend}
+    {$if CompilerVersion >= 33.0} //Delphi RX10.3 Rio
+      {$define DELPHIRX103_UP}
+	    {$define DELPHIRIO_UP}
     {$ifend}
   {$else}
     //Delphi 5 or older
@@ -138,5 +149,6 @@
   {.$WARN SYMBOL_PLATFORM OFF}
   {.$WARN UNIT_PLATFORM OFF}
 {$endif}
+
 
 
