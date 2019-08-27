@@ -4,7 +4,7 @@
     "picture": "QuickORM.png",
     "license_type": "Apache-2.0",
     "license_file": "LICENSE.txt",
-    "platforms": "Win32;Win64",
+    "platforms": "Win32;Win64;Android;Linux64",
     "package_compiler_min": 22,
     "package_compiler_max": 32,
     "compiler_min": 22,
