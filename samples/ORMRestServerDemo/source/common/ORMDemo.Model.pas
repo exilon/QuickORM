@@ -33,7 +33,7 @@ type
     fAge : Integer;
     fLogin : TLogin;
   public
-    constructor Create;
+    constructor Create; override;
   published
     property Name : RawUTF8 read fName write fName;
     property Surname : RawUTF8 read fSurname write fSurname;
@@ -56,6 +56,7 @@ implementation
 
 constructor TAUser.Create;
 begin
+  inherited;
   fLogin := TLogin.Create;
 end;
 

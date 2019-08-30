@@ -111,10 +111,9 @@ begin
         User.Name := 'User' + randomname;
         User.Surname := 'Surname' + randomname;
         User.Age := Random(50)+20;
-        Login.Username := 'user' + randomname;
-        Login.UserPass := TSQLAuthUser.ComputeHashedPassword(IntToStr(Random(9999)+1000));
-        Login.LastLogin := IncDay(Now,Random(60)*-1);
-        User.Login := Login;
+        User.Login.Username := 'user' + randomname;
+        User.Login.UserPass := TSQLAuthUser.ComputeHashedPassword(IntToStr(Random(9999)+1000));
+        User.Login.LastLogin := IncDay(Now,Random(60)*-1);
         RestServer.ORM.AddOrUpdate(User);
       finally
         User.Free;
