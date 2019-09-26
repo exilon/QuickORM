@@ -7,7 +7,7 @@
   Author      : Kike Pérez
   Version     : 1.6
   Created     : 02/06/2017
-  Modified    : 01/06/2019
+  Modified    : 26/09/2019
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
@@ -356,10 +356,13 @@ begin
       end;
 
       //get Auth Group
-      fMyAuthGroup := TORMAuthGroup.CreateAndFillPrepare(ORM,'ID=?',[ORM.SessionUser.GroupRights.ID]);
-      if not fMyAuthGroup.FillOne then
+      if (fHTTPOptions.AuthMode <> amNoAuthentication) then
       begin
-        //raise Exception.Create('No group assigned or error on get group info!');
+        fMyAuthGroup := TORMAuthGroup.CreateAndFillPrepare(ORM,'ID=?',[ORM.SessionUser.GroupRights.ID]);
+        if not fMyAuthGroup.FillOne then
+        begin
+          raise Exception.Create('No group assigned or error on get group info!');
+        end;
       end;
     end;
   finally
@@ -398,7 +401,8 @@ end;
 
 function TORMRestClient.ActionAllowed(const Action : string) : Boolean;
 begin
-  Result := Self.fMyAuthGroup.AppAction(Action).Allowed;
+  if (fHTTPOptions.AuthMode <> amNoAuthentication) then Result := Self.fMyAuthGroup.AppAction(Action).Allowed
+    else Result := True;
 end;
 
 end.

@@ -7,7 +7,7 @@
   Author      : Kike Pérez
   Version     : 1.6
   Created     : 20/06/2017
-  Modified    : 30/08/2019
+  Modified    : 26/09/2019
 
   This file is part of QuickORM: https://github.com/exilon/QuickORM
 
