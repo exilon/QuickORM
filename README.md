@@ -105,4 +105,4 @@ RestServer.Security.PublicMethods := ['Method1','Method2'];
 RestServer.Database.DBMappingFiels.Map(TMySQLRecord,'ID','IDCustom');
 ```
 
-Do you want learn delphi? [learndelphi.org](https://learndelphi.org)
+>Do you want to learn delphi or improve your skills? [learndelphi.org](https://learndelphi.org)
