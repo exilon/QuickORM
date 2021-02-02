@@ -1,10 +1,10 @@
 { ***************************************************************************
 
-  Copyright (c) 2016-2019 Kike Pérez
+  Copyright (c) 2016-2019 Kike PÃ©rez
 
   Unit        : Quick.ORM.RestClient
   Description : Rest ORM Client access by http, httpapi or websockets
-  Author      : Kike Pérez
+  Author      : Kike PÃ©rez
   Version     : 1.6
   Created     : 02/06/2017
   Modified    : 26/09/2019
@@ -100,20 +100,23 @@ type
     constructor Create;
     destructor Destroy; override;
   end;
+   
+  TGUIDArray = array of TGUID; 
 
   TORMServiceClient = class
   private
     fORMClient : TORMClient;
-    fMethodInterface : TGUID;
+    fMethodInterface : TGUIDArray;
     fInstanceImplementation : TServiceInstanceImplementation;
     fEnabled : Boolean;
   public
     constructor Create;
-    property MethodInterface : TGUID read fMethodInterface write fMethodInterface;
+    property MethodInterface : TGUIDArray read fMethodInterface write fMethodInterface;
     property InstanceImplementation : TServiceInstanceImplementation read fInstanceImplementation write fInstanceImplementation;
     property Enabled : Boolean read fEnabled write fEnabled;
     procedure SetORM(fORM : TORMClient);
-    function SetRestMethod(out Obj) : Boolean;
+    function SetRestMethod(out Obj) : Boolean; overload;
+    function SetRestMethod(const aObjs: array of pointer) : Boolean; overload;
   end;
 
   TConnectEvent = procedure of object;
@@ -204,9 +207,21 @@ begin
   fORMClient := fORM;
 end;
 
+function TORMServiceClient.SetRestMethod(const aObjs: array of pointer): Boolean;
+begin
+   try
+     result := true;
+     fORMClient.Services.Resolve(fMethodInterface, aObjs, false);
+   except
+     result := false;
+   end;
+
+end;
+
 function TORMServiceClient.SetRestMethod(out Obj) : Boolean;
 begin
-  Result := fORMClient.Services.Resolve(fMethodInterface, obj);
+  if length(fMethodInterface) > 0 then
+    Result := fORMClient.Services.Resolve(fMethodInterface[0], obj);
 end;
 
 
@@ -352,7 +367,7 @@ begin
       if fService.Enabled then
       begin
         fService.SetORM(ORM);
-        ORM.ServiceDefine([fService.fMethodInterface],fService.fInstanceImplementation);
+        ORM.ServiceDefine(fService.fMethodInterface,fService.fInstanceImplementation);
       end;
 
       //get Auth Group
