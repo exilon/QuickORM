@@ -1,10 +1,10 @@
 { ***************************************************************************
 
-  Copyright (c) 2016-2019 Kike Pérez
+  Copyright (c) 2016-2019 Kike PÃ©rez
 
   Unit        : Quick.ORM.RestServer
   Description : Rest ORM Server allows access by http, httpapi or websockets
-  Author      : Kike Pérez
+  Author      : Kike PÃ©rez
   Version     : 1.9
   Created     : 02/06/2017
   Modified    : 08/05/2019
@@ -115,17 +115,19 @@ type
     constructor Create;
     destructor Destroy; override;
   end;
+  
+  TGuidArray = array of TGUID;
 
   TORMService = class
   public
     fMethodClass : TInterfacedClass;
-    fMethodInterface : TGUID;
+    fMethodInterface : TGuidArray;
     fInstanceImplementation : TServiceInstanceImplementation;
     fResultAsXMLIfRequired : Boolean;
     fEnabled : Boolean;
   public
     property MethodClass : TInterfacedClass read fMethodClass write fMethodClass;
-    property MethodInterface : TGUID read fMethodInterface write fMethodInterface;
+    property MethodInterface : TGuidArray read fMethodInterface write fMethodInterface;
     property InstanceImplementation : TServiceInstanceImplementation read fInstanceImplementation write fInstanceImplementation;
     property ResultAsXMLIfRequired : Boolean read fResultAsXMLIfRequired write fResultAsXMLIfRequired;
     property Enabled : Boolean read fEnabled write fEnabled;
@@ -518,7 +520,7 @@ begin
   //service initialization
   if fService.Enabled then
   begin
-    ServiceFactoryServer := ORM.ServiceDefine(fService.MethodClass, [fService.fMethodInterface], fService.InstanceImplementation);
+    ServiceFactoryServer := ORM.ServiceDefine(fService.MethodClass, fService.fMethodInterface, fService.InstanceImplementation);
     ServiceFactoryServer.SetOptions([], [optErrorOnMissingParam]);
     if (not Security.Enabled) or (Security.PublicServices) then ServiceFactoryServer.ByPassAuthentication := True;
     //determines if service will return XML if client only accepts XML
