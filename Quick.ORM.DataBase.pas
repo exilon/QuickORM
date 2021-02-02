@@ -109,7 +109,7 @@ end;
 procedure TORMDataBase.SetDBFileName(const dbfname : RawUTF8);
 begin
   //if dbfile not found, sets as current app dir
-  if (CompareText(dbfname,'SQLITE_MEMORY_DATABASE_NAME') = 0) or TFile.Exists(dbfname) then fDBFileName := dbfname
+  if (CompareText(dbfname,SQLITE_MEMORY_DATABASE_NAME) = 0) or TFile.Exists(dbfname) then fDBFileName := dbfname
     else fDBFileName := Format('%s\%s',[path.EXEPATH,TPath.GetFileName(dbfname)]);
 end;
 
